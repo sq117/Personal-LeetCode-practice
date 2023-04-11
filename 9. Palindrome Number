@@ -1,0 +1,5 @@
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        f2e = str(x)
+        e2f = f2e[::-1]
+        return True if f2e == e2f else False
