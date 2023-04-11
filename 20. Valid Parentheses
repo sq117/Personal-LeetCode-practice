@@ -1,0 +1,27 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        vector<char> stk;
+        for (char ss : s){
+            if (ss == '(' || ss == '[' || ss == '{'){
+                stk.push_back(ss);
+            }
+            else if (!stk.empty() && match(ss, stk.back())){
+                stk.pop_back();
+            }
+            else{
+                return false;
+            }
+        }
+        return stk.empty();
+    }
+
+    bool match(char ss, char stk_end){
+        if ((ss == ')' && stk_end == '(') || (ss == ']' && stk_end == '[') || (ss == '}' && stk_end == '{')){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+};
