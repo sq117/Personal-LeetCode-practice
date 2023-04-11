@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        vector<string> ans = {""};
+        if (digits.empty()){
+            return {};
+        }
+        vector<string> map = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        vector<int> idx;
+        for (int i = 0; i < digits.size(); i++){
+            idx.push_back(digits[i] - '2');
+        }
+        for (int i : idx) {
+            vector<string> tmp;
+            for (auto a : ans) {
+                for (char ss : map[i]) {
+                    tmp.push_back(a + ss);
+                }
+            }
+            ans = move(tmp);
+        }
+        
+        return ans;
+    }
+};
