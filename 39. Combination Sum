@@ -1,0 +1,19 @@
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        ans = []
+        res = []
+        def dfs(cur_sum, i):
+            nonlocal ans, res
+            if cur_sum == target:
+                tmp = res.copy()
+                ans.append(tmp)
+            elif cur_sum > target:
+                return
+            else:
+                while i<len(candidates):
+                    res.append(candidates[i])
+                    dfs(cur_sum+candidates[i], i)
+                    res.pop()
+                    i = i+1
+        dfs(0, 0)
+        return ans
