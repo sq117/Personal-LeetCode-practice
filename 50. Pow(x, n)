@@ -1,0 +1,16 @@
+class Solution {
+public:
+
+    double newPow(double x, long long n){
+        if (x == 0) return double(0);
+        if (n == 0) return double(1);
+        if (n % 2 == 0)  return newPow(x*x, n/2);
+        return x*newPow(x*x, n/2);
+    }
+    double myPow(double x, int n) {
+        if (x == 0) return double(0);
+        if (n == 0) return double(1);
+        if (n < 0) return 1/newPow(x, abs(n));
+        return newPow(x, n);
+    }
+};
