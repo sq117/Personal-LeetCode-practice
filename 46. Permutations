@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<vector<int>> ans;
+
+    void dfs(vector<bool>& used, vector<int>& tmp, vector<int>& nums, int cur, int n){
+        if (cur == n){
+            ans.push_back(tmp);
+            return ;
+        }
+        for (int i = 0; i < n; i++){
+            if (!used[i]){
+                tmp[cur] = nums[i];
+                used[i] = true;
+                dfs(used, tmp, nums, cur + 1, n);
+                used[i] = false;
+            }
+        }
+    }
+
+    vector<vector<int>> permute(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> tmp(n);
+        vector<bool> used(n, false);
+        dfs(used, tmp, nums, 0, n);
+        return ans;
+    }
+};
